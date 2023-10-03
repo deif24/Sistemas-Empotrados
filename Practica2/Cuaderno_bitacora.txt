@@ -2,3 +2,9 @@
 
 David Martínez y Alejandro Gea: Se ha repartido el trabajo para empezar a buscar los términos correspondientes a la primera parte de la práctica (apartado 1a)
 
+- 02/10/2023
+
+Se han repartido las tareas de la parte 1 de la práctica donde:
+David Martínez: Ha explicado las secciones de los ficheros elf referentes al apartado 1c y ha explicado las estructuras de datos stack y heap de los apartados 1d y 1e
+Alejandro Gea: Ha terminado de explicar comandos como as, wc y free referidos al apartado 1a y ha realizado los dos ejemplos utilizando comandos de linux del apartado 1b
+
