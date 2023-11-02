@@ -1,0 +1,5 @@
+- 30/10/2023 -
+
+Se ha empezado la tercera práctica y hemos trabajado en la parte 1.
+Alejandro Gea: Ha realizado la tarea 1.1 donde se hace una breve introduccion a opeMP y la tarea 1.2 en los apartados donde se explican los modificadores del comando 'schedule' y la importancia de las variables privadas en el multithreading
+David Martínez: Ha realizado parte de la tarea 1.2 correspondiente a explicar el código dado y sus características al utilizar OpenMP y la diferencia de ejecución al utilizar 'static' y 'dynamic' con el código dado
