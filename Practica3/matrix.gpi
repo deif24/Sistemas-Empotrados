@@ -1,0 +1,9 @@
+#MATRIX GRAPH
+
+set terminal png
+set output "matrix.png"
+set xlabel "Tamaño matrices"
+set ylabel "Tiempo (ms)"
+set title  "Tiempo de ejecución respecto al tamaño de matrices"
+
+plot "matrix.steps" using 1:2 with linespoints notitle 
