@@ -9,3 +9,8 @@ David Martínez: Ha realizado parte de la tarea 1.2 correspondiente a explicar e
 Se ha empezado a hacer la tarea 1.3, dividiéndose el trabajo de la misma
 David Martínez: Ha realizado el primer apartado de la tarea 1.3 basado en medir tiempos de un programa para las arquitecturas x64-86 y ARM en función de parámetros del mismo programa.
 Alejandro Gea: Ha realizado el apartado de la tarea 1.3 correspondiente a medir tiempos de ejecución usando la paralelización con OpenMP
+
+- 13/11/2023 -
+
+David Martinez: ha comenzado con la parte 2 de la práctica relacionada con obtener información a partir del directorio /proc
+Alejandro Gea: ha terminado la parte de la tarea 1.3 correspondiente a comparar la ganancia de rendimiento al pararelizar el programa en AMD/intel y ARM
