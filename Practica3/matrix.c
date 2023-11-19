@@ -28,7 +28,6 @@ int main(){
 		}
 
 		timeInit=0, timeFin=0;
-		timeInit=omp_get_wtime();
 		// Asignación valores
 		for(int i=0; i<d; i++){
 			for(int j=0; j<d; j++){
@@ -38,12 +37,13 @@ int main(){
 			}
 		}
 
+		timeInit=omp_get_wtime();
 		// Producto vectorial
 		for (int i = 0; i < d; i++) {
 	        for (int j = 0; j < d; j++) {
 	            C[i][j] = 0;
 	            for (int k = 0; k < d; k++) {
-	                C[i][j] += A[i][k] * A[k][j];
+	                C[i][j] += A[i][k] * B[k][j];
 	            }
 			}
 		}
