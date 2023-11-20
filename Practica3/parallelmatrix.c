@@ -13,13 +13,18 @@ int main(){
     double totaltimeInit = 0;
     double totaltimeFin = 0;
 
-	printf("Tamaño matrices   Tiempo tardado secuencial \n");
+	int numThreads = 3, nthreads;
+
+	printf("Tamaño matrices   Tiempo tardado paralelo \n");
+
+	
 
 	totaltimeInit=omp_get_wtime();
 
 	for(int i=0; i<19; i++){
 
 		// Reserva de matrices
+		#pragma parallel for
 		double **A = (double **)malloc(d * sizeof(double *));
 		double **B = (double **)malloc(d * sizeof(double *));
 		double **C = (double **)malloc(d * sizeof(double *));
@@ -36,37 +41,46 @@ int main(){
 		timeInit=0, timeFin=0;
 		timeInit=omp_get_wtime();
 
-		// Asignación valores
-		for(int i=0; i<d; i++){
-			for(int j=0; j<d; j++){
-				A[i][j]= (rand()%1000)/1000;
-				B[i][j]= (rand()%1000)/1000;
-				K[i][j]= rand()%255;
-			}
-		}
+		omp_set_num_threads(numThreads); // Asignamos el numero de threads
+		
+        #pragma omp parallel shared(A,B,C,R,K) private(timeInit,timeFin)
+        {
+            // Asignación valores
+            #pragma omp for schedule(auto)
+            for(int i=0; i<d; i++){
+                for(int j=0; j<d; j++){
+                    A[i][j]= (rand()%1000)/1000;
+                    B[i][j]= (rand()%1000)/1000;
+                    K[i][j]= rand()%255;
+                }
+            }
 
-		// Producto vectorial
-		for (int i = 0; i < d; i++) {
-	        for (int j = 0; j < d; j++) {
-	            C[i][j] = 0;
-	            for (int k = 0; k < d; k++) {
-	                C[i][j] += A[i][k] * A[k][j];
-	            }
-			}
-		}
+            // Producto vectorial
+            #pragma omp for schedule(auto)
+            for (int i = 0; i < d; i++) {
+                for (int j = 0; j < d; j++) {
+                    C[i][j] = 0;
+                    for (int k = 0; k < d; k++) {
+                        C[i][j] += A[i][k] * A[k][j];
+                    }
+                }
+            }
 
-		// Producto escalar 
-		for(int i=0; i<d; i++){
-			for(int j=0; j<d; j++){
-				R[i][j]=K[i][j]*C[i][j];
-			}
-		}
+            // Producto escalar 
+            #pragma omp for schedule(auto)
+            for(int i=0; i<d; i++){
+                for(int j=0; j<d; j++){
+                    R[i][j]=K[i][j]*C[i][j];
+                }
+            }
+        }
 
 		timeFin=omp_get_wtime();
 
 		printf("     %d \t        %f ms \n",d ,(timeFin-timeInit)*1000);
 	
 		// Liberar la memoria de las matrices
+		#pragma parallel for
 	    for (int i = 0; i < d; i++) {
 	        free(A[i]);
 	        free(B[i]);
